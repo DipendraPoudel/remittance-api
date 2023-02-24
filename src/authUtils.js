@@ -1,5 +1,5 @@
-import { join } from "path";
-import { getAuthorizationHeader } from "mastercard-oauth1-signer";
+const path = require("path");
+const oauth = require("mastercard-oauth1-signer");
 require("dotenv").config();
 
 // Load MCAPI auth keys
@@ -8,7 +8,7 @@ const loadKeys = () => {
   const forge = require("node-forge");
   const fs = require("fs");
   const p12Content = fs.readFileSync(
-    join(__dirname, process.env.MCAPI_CONSUMER_KEY),
+    path.join(__dirname, process.env.MCAPI_CONSUMER_KEY),
     "binary"
   );
   const p12Asn1 = forge.asn1.fromDer(p12Content, false);
@@ -33,7 +33,7 @@ const applyAuth = (clientInstance) => {
   clientInstance.applyAuthToRequest = function (request) {
     const _end = request._end;
     request._end = function () {
-      const authHeader = getAuthorizationHeader(
+      const authHeader = oauth.getAuthorizationHeader(
         request.url,
         request.method,
         request._data,
@@ -47,4 +47,4 @@ const applyAuth = (clientInstance) => {
   };
 };
 
-export default { applyAuth };
+module.exports = { applyAuth };
