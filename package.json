@@ -5,7 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "dotenv": "^16.0.3",
-    "mastercard-oauth1-signer": "^1.1.6"
+    "mastercard-oauth1-signer": "^1.1.6",
+    "node-forge": "^1.3.1",
+    "remittance-api-client": "github:DipendraPoudel/remittance-api-client"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
