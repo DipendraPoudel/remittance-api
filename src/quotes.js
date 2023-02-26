@@ -1,5 +1,5 @@
 module.exports = (clientInstance) => {
-  const quotesApi = require("api-client/api/QuotesApi");
+  const quotesApi = require("remittance-api-client/api/QuotesApi");
   const quotesApiService = new quotesApi(clientInstance);
 
   const createQuote = (req, res) => {
