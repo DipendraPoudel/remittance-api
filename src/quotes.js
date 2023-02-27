@@ -1,6 +1,10 @@
 module.exports = (clientInstance) => {
-  const quotesApi = require("remittance-api-client/dist/api/QuotesApi");
-  const quotesApiService = new quotesApi();
+  // const quotesApi = require("remittance-api-client/dist/api/QuotesApi");
+  // const quotesApiService = new quotesApi();
+
+  const crossborder = require("remittance-api-client/api/index");
+  const quotesApi = new crossborder.quotesApi();
+  const quotesApiService = new quotesApi(clientInstance);
 
   const createQuote = (req, res) => {
     const quote = req.body;
@@ -26,7 +30,7 @@ module.exports = (clientInstance) => {
   const getQuotes = (req, res) => {
     const { partnerId, limit, offset } = req.query;
     console.log("Retrieve quotes for partner", partnerId);
-    contractsApiService.getContracts(
+    quotesApiService.getQuotes(
       partnerId,
       { limit, offset },
       (err, data, resp) => {
