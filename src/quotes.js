@@ -1,6 +1,6 @@
 module.exports = (clientInstance) => {
-  const quotesApi = require("remittance-api-client/api/QuotesApi");
-  const quotesApiService = new quotesApi(clientInstance);
+  const quotesApi = require("remittance-api-client/dist/api/QuotesApi");
+  const quotesApiService = new quotesApi();
 
   const createQuote = (req, res) => {
     const quote = req.body;
@@ -23,30 +23,29 @@ module.exports = (clientInstance) => {
     );
   };
 
-
-const getQuotes = (req, res) => {
-  const { partnerId, limit, offset } = req.query;
-  console.log('Retrieve quotes for partner', partnerId);
-  contractsApiService.getContracts(
-    partnerId,
-    { limit, offset },
-    (err, data, resp) => {
-      if (err) {
-        console.log('***** error *****\n', err);
-        return res.send({ err });
+  const getQuotes = (req, res) => {
+    const { partnerId, limit, offset } = req.query;
+    console.log("Retrieve quotes for partner", partnerId);
+    contractsApiService.getContracts(
+      partnerId,
+      { limit, offset },
+      (err, data, resp) => {
+        if (err) {
+          console.log("***** error *****\n", err);
+          return res.send({ err });
+        }
+        if (data) {
+          return res.send(data);
+        } else {
+          console.log("***** response *****\n", resp);
+          return res.send({ resp });
+        }
       }
-      if (data) {
-        return res.send(data);
-      } else {
-        console.log('***** response *****\n', resp);
-        return res.send({ resp });
-      }
-    }
-  );
-};
+    );
+  };
 
-return {
-  createQuote,
-  getQuotes
-};
+  return {
+    createQuote,
+    getQuotes,
+  };
 };

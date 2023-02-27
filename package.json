@@ -2,7 +2,10 @@
   "name": "remittance-api",
   "version": "1.0.0",
   "description": "",
+  "author": "Dipendra Poudel",
+  "license": "MIT",
   "main": "index.js",
+  
   "dependencies": {
     "dotenv": "^16.0.3",
     "mastercard-oauth1-signer": "^1.1.6",
@@ -10,8 +13,10 @@
     "remittance-api-client": "github:DipendraPoudel/remittance-api-client"
   },
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Dipendra Poudel",
-  "license": "MIT"
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
