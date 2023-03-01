@@ -5,12 +5,11 @@
   "author": "Dipendra Poudel",
   "license": "MIT",
   "main": "index.js",
-  
   "dependencies": {
     "dotenv": "^16.0.3",
     "mastercard-oauth1-signer": "^1.1.6",
     "node-forge": "^1.3.1",
-    "remittance-api-client": "github:DipendraPoudel/remittance-api-client"
+    "crossborder": "github:DipendraPoudel/crossborder"
   },
   "scripts": {
     "dev": "nodemon index.js",
