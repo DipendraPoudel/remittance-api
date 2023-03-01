@@ -1,5 +1,5 @@
 module.exports = (clientInstance) => {
-  const crossborder = require("remittance-api-client/dist/index");
+  const crossborder = require("crossborder/dist/index");
   const quotesApiService = new crossborder.QuotesApi(clientInstance);
 
   const createQuote = (req, res) => {
