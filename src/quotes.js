@@ -14,11 +14,9 @@ module.exports = (clientInstance) => {
           console.log("***** error *****\n", err);
           return res.status(500).send({ err });
         }
-        if (data) {
+        else(data) 
           return res.status(201).send(data);
-        }
-        console.log("***** response *****\n", resp);
-        return res.status(500).send({ resp });
+        
       }
     );
   };

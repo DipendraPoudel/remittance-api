@@ -1,14 +1,13 @@
+require("dotenv").config();
 const path = require("path");
 const oauth = require("mastercard-oauth1-signer");
-require("dotenv").config();
 
 // Load MCAPI auth keys
-
 const loadKeys = () => {
   const forge = require("node-forge");
   const fs = require("fs");
   const p12Content = fs.readFileSync(
-    path.join(__dirname, process.env.MCAPI_CONSUMER_KEY),
+    path.join(__dirname, process.env.MCAPI_KEY),
     "binary"
   );
   const p12Asn1 = forge.asn1.fromDer(p12Content, false);
@@ -26,14 +25,14 @@ const loadKeys = () => {
     consumerKey: process.env.MCAPI_CONSUMER_KEY,
   };
 };
-
 // Add oauth1a signing to OpenAPI client
 const applyAuth = (clientInstance) => {
   const { signingKey, consumerKey } = loadKeys();
+
   clientInstance.applyAuthToRequest = function (request) {
     const _end = request._end;
     request._end = function () {
-      const authHeader = oauth.getAuthorizationHeader(
+      const authHeader = oauth.getAuthorizationString(
         request.url,
         request.method,
         request._data,
