@@ -1,7 +1,8 @@
 const authUtils = require("../authUtils");
 
 beforeAll(() => {
-  process.env.MCAPI_KEY = "../../remittance-api/remittanceapp-sandbox.p12";
+  process.env.MCAPI_KEY = "resources/remittanceapp-sandbox.p12";
+  //"../../remittance-api/remittanceapp-sandbox.p12";
   process.env.MCAPI_KEY_ALIAS = "keyalias";
   process.env.MCAPI_KEY_PASSWORD = "keystorepassword";
   process.env.MCAPI_CONSUMER_KEY =
